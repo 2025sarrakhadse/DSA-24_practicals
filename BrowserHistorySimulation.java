@@ -1,19 +1,16 @@
 import java.util.Scanner;
 
-// Stack Implementation using Array to simulate Browser History
 class BrowserStack {
     private String[] stack;
     private int top;
     private int capacity;
 
-    // Constructor to initialize the stack
     public BrowserStack(int size) {
         this.capacity = size;
         this.stack = new String[capacity];
         this.top = -1; // -1 represents an empty stack
     }
 
-    // Push Operation: Store a newly visited URL
     public void push(String url) {
         if (top == capacity - 1) {
             System.out.println("Error: Browser History is Full (Stack Overflow)!");
@@ -23,7 +20,6 @@ class BrowserStack {
         System.out.println("Success -> Visited: " + url);
     }
 
-    // Pop Operation: Go back to the previous webpage
     public String pop() {
         if (top == -1) {
             System.out.println("Error: No history to go back to (Stack Underflow)!");
@@ -32,7 +28,6 @@ class BrowserStack {
         return stack[top--];
     }
 
-    // Peek Operation: View current webpage
     public String peek() {
         if (top == -1) {
             System.out.println("Notification: You are on the Home Page (No active URL).");
@@ -41,7 +36,6 @@ class BrowserStack {
         return stack[top];
     }
 
-    // Display Operation: Show the complete visited history stack
     public void display() {
         if (top == -1) {
             System.out.println("Browser History is empty.");
@@ -59,7 +53,6 @@ class BrowserStack {
     }
 }
 
-// Main class providing a menu-driven simulation
 public class BrowserHistorySimulation {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
