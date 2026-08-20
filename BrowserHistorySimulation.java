@@ -8,7 +8,7 @@ class BrowserStack {
     public BrowserStack(int size) {
         this.capacity = size;
         this.stack = new String[capacity];
-        this.top = -1; // -1 represents an empty stack
+        this.top = -1;
     }
 
     public void push(String url) {
@@ -58,7 +58,7 @@ public class BrowserHistorySimulation {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter max size of Browser History Stack: ");
         int size = scanner.nextInt();
-        scanner.nextLine(); // Clear scanner buffer
+        scanner.nextLine();
 
         BrowserStack browserHistory = new BrowserStack(size);
         int choice;
