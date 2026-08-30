@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Custom character stack implementation using an array
 class CharStack {
     private char[] stack;
     private int top;
@@ -22,7 +21,7 @@ class CharStack {
 
     public char pop() {
         if (top == -1) {
-            return '\0'; // Return null char if stack is empty
+            return '\0';
         }
         return stack[top--];
     }
@@ -41,7 +40,6 @@ class CharStack {
 
 public class InfixToPostfix {
 
-    // Helper method to return precedence of operators
     private static int getPrecedence(char ch) {
         switch (ch) {
             case '+':
@@ -53,10 +51,9 @@ public class InfixToPostfix {
             case '^':
                 return 3;
         }
-        return -1; // For operands and parenthesis
+        return -1;
     }
 
-    // Conversion method using the custom CharStack
     public static String convert(String infix) {
         StringBuilder postfix = new StringBuilder();
         CharStack stack = new CharStack(infix.length());
@@ -64,22 +61,18 @@ public class InfixToPostfix {
         for (int i = 0; i < infix.length(); i++) {
             char ch = infix.charAt(i);
 
-            // Case 1: If character is alphanumeric (operand), add to output
             if (Character.isLetterOrDigit(ch)) {
                 postfix.append(ch);
             }
-            // Case 2: If open parenthesis, push to stack
             else if (ch == '(') {
                 stack.push(ch);
             }
-            // Case 3: If closing parenthesis, pop until '(' is found
             else if (ch == ')') {
                 while (!stack.isEmpty() && stack.peek() != '(') {
                     postfix.append(stack.pop());
                 }
-                stack.pop(); // Pop out and discard '('
+                stack.pop(); 
             }
-            // Case 4: If an operator is encountered
             else if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^') {
                 while (!stack.isEmpty() && getPrecedence(ch) <= getPrecedence(stack.peek())) {
                     postfix.append(stack.pop());
@@ -88,7 +81,6 @@ public class InfixToPostfix {
             }
         }
 
-        // Pop all remaining operators from the stack
         while (!stack.isEmpty()) {
             postfix.append(stack.pop());
         }
@@ -102,7 +94,6 @@ public class InfixToPostfix {
         System.out.print("Enter an Infix Expression (e.g., A+B*C or (A+B)*C): ");
         String infix = scanner.nextLine();
 
-        // Strip spaces for clean processing
         String formattedInfix = infix.replaceAll("\\s+", "");
         String postfix = convert(formattedInfix);
 
